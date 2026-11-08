@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "real-time-cam"
+version = "0.1.0"
+description = "Web-based low-latency camera configurator for XeroxUAV Ground Control Station"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.9.0",
+    "ty>=0.0.1a0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests"]
+extend-exclude = [".cache"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort import sorting
+    "UP",  # pyupgrade modern syntax
+    "B",   # flake8-bugbear bug prevention
+    "SIM", # flake8-simplify
+    "C90", # mccabe cyclomatic complexity
+    "N",   # pep8-naming
+    "ARG", # flake8-unused-arguments
+    "ERA", # eradicate commented-out dead code
+    "PLR", # pylint refactor rules
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 6
+max-returns = 4
+max-statements = 30
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=real_time_cam",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["real_time_cam"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]

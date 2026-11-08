@@ -1,0 +1,45 @@
+# Python bytecode & caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Astral / pytest / coverage caches
+.cache/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Build & distribution artifacts
+build/
+dist/
+*.egg-info/
+
+# Local secrets & machine-specific runtime configs (never commit IPs or tokens)
+.env
+.env.*
+configs/*.local.toml
+configs/backend.toml
+configs/pi_agent.toml
+
+# Local third-party binaries & archives (e.g., MediaMTX binary on laptop)
+bin/
+tools/
+mediamtx
+mediamtx.exe
+*.zip
+*.tar.gz
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

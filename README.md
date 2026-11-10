@@ -8,6 +8,7 @@ Web-based, sub-second latency camera streaming and live configuration module for
 
 - [Project Overview & Architecture (Persian)](docs/00-overview.md)
 - [Step 00 — Repository Skeleton & Quality Toolchain (Persian)](docs/steps/00-repo-skeleton.md)
+- [Step 01 — MediaMTX on the Laptop & First WebRTC Stream (Persian)](docs/steps/01-mediamtx-laptop.md)
 
 ## Quick Developer Checks
 

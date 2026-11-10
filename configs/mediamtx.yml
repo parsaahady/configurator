@@ -1,0 +1,67 @@
+###############################################################################
+# XeroxUAV Ground Station — MediaMTX Configuration
+# Runs on the Windows laptop.
+# Note: Laptop UDP port 5000 is occupied; none of the listeners below use 5000.
+###############################################################################
+
+logLevel: info
+logDestinations: [stdout]
+
+readTimeout: 10s
+writeTimeout: 10s
+writeQueueSize: 512
+
+# Disable unused streaming protocols to keep laptop ports minimal and clean
+api: false
+metrics: false
+pprof: false
+playback: false
+rtmp: false
+srt: false
+moq: false
+
+###############################################################################
+# 1. Ingestion from Raspberry Pi (GStreamer RTSP Push)
+###############################################################################
+rtsp: true
+rtspTransports: [udp, tcp]
+rtspEncryption: "no"
+rtspAddress: :8554
+rtpAddress: :8000
+rtcpAddress: :8001
+
+###############################################################################
+# 2. Sub-second Browser Playback (WebRTC / WHEP)
+###############################################################################
+webrtc: true
+webrtcAddress: :8889
+webrtcEncryption: false
+webrtcAllowOrigins: ["*"]
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: ""
+webrtcIPsFromInterfaces: true
+# Intentionally empty: team LAN/hotspot may have no internet access.
+# Querying external STUN servers offline would stall connection by 5 seconds.
+webrtcICEServers2: []
+
+###############################################################################
+# 3. Fallback HTTP Live Streaming (HLS)
+###############################################################################
+hls: true
+hlsAddress: :8888
+hlsAllowOrigins: ["*"]
+hlsVariant: lowLatency
+
+###############################################################################
+# Stream Paths
+###############################################################################
+pathDefaults:
+  source: publisher
+  overridePublisher: true
+  record: false
+
+paths:
+  # Primary quadcopter camera feed: rtsp://<laptop-host>:8554/cam
+  cam:
+    source: publisher
+    overridePublisher: true

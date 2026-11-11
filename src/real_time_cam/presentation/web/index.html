@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ایستگاه کنترل تصویر کوادکوپتر — XeroxUAV</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-tag">XeroxUAV · GCS</span>
+        <h1 class="brand-title">پخش زنده دوربین کوادکوپتر (WebRTC / WHEP)</h1>
+      </div>
+      <button id="fullscreen-btn" type="button" class="btn">
+        تمام‌صفحه
+      </button>
+    </header>
+
+    <main class="workspace">
+      <section class="connection-bar" aria-label="تنظیم آدرس سرور رسانه">
+        <label for="whep-url-input" class="connection-label">
+          آدرس WHEP:
+        </label>
+        <input
+          id="whep-url-input"
+          class="url-input"
+          type="url"
+          spellcheck="false"
+          autocomplete="off"
+        />
+        <button id="connect-btn" type="button" class="btn btn-primary">
+          اتصال زنده
+        </button>
+        <button id="disconnect-btn" type="button" class="btn" disabled>
+          قطع اتصال
+        </button>
+      </section>
+
+      <section id="video-stage" class="video-stage" aria-label="تصویر زنده دوربین">
+        <video id="live-video" class="live-video" autoplay playsinline muted></video>
+        <div class="hud-overlay">
+          <span id="connection-badge" class="badge" data-state="idle">
+            آماده اتصال
+          </span>
+          <span id="resolution-pill" class="hud-pill">—</span>
+        </div>
+      </section>
+
+      <p id="status-banner" class="status-banner" role="status" aria-live="polite">
+        در حال بارگذاری پخش‌کننده...
+      </p>
+    </main>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

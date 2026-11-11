@@ -10,6 +10,10 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
 
+[project.scripts]
+xerox-cam-benchmark = "real_time_cam.presentation.pi_agent.benchmark_cli:main"
+xerox-cam-push = "real_time_cam.presentation.pi_agent.push_cli:main"
+
 [dependency-groups]
 dev = [
     "pytest>=8.3.0",
